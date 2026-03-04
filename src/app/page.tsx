@@ -9,6 +9,7 @@ import TaskPanel, { type Task, type CompletedTask } from '@/components/TaskPanel
 import { PresenceProvider } from '@/components/PresenceContext'
 import SignOutButton from '@/components/SignOutButton'
 import TeamSidebar from '@/components/TeamSidebar'
+import ThemeToggle from '@/components/ThemeToggle'
 import type { ShiftStatus } from '@/lib/actions/presence'
 import type { Department } from '@/lib/actions/tasks'
 
@@ -91,28 +92,29 @@ export default async function Home() {
 
   return (
     <PresenceProvider initialShiftStatus={myShiftStatus}>
-      <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
+      <div className="min-h-screen bg-yt-bg">
 
         {/* ── Top Nav ── */}
-        <nav className="sticky top-0 z-20 border-b border-zinc-200/80 bg-white/90 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-900/90">
+        <nav className="sticky top-0 z-20 border-b border-yt-border/80 bg-yt-bg/90 backdrop-blur-md">
           <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-violet-600">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-yt-red">
                 <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <span className="hidden text-sm font-semibold text-zinc-900 dark:text-zinc-50 sm:inline">
+              <span className="hidden text-sm font-semibold text-yt-text sm:inline">
                 Team Tracker
               </span>
             </div>
 
             <div className="flex items-center gap-2">
+              <ThemeToggle />
               <StatusDropdown />
               {isAdmin && (
                 <Link
                   href="/admin"
-                  className="hidden items-center gap-1.5 rounded-xl bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-violet-600/25 transition-colors hover:bg-violet-700 md:inline-flex"
+                  className="hidden items-center gap-1.5 rounded-xl bg-yt-red px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-yt-red/25 transition-colors hover:bg-yt-red-hover md:inline-flex"
                 >
                   <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />

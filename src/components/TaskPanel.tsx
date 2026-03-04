@@ -113,12 +113,12 @@ function InlineEditForm({
         value={desc}
         onChange={e => setDesc(e.target.value)}
         maxLength={120}
-        className="min-w-0 flex-1 rounded-xl border border-violet-300 bg-white px-3 py-2 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:border-violet-700 dark:bg-zinc-800 dark:text-zinc-50"
+        className="min-w-0 flex-1 rounded-xl border border-yt-border bg-yt-card px-3 py-2 text-sm text-yt-text focus:outline-none"
       />
       <select
         value={dept}
         onChange={e => setDept(e.target.value as Department)}
-        className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-xs focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+        className="rounded-xl border border-yt-border bg-yt-card px-3 py-2 text-xs text-yt-text-secondary focus:outline-none"
       >
         <option value="automation">Automation</option>
         <option value="webdev">Web Dev</option>
@@ -129,7 +129,7 @@ function InlineEditForm({
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
         </button>
-        <button type="button" onClick={onCancel} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-zinc-400 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800">
+        <button type="button" onClick={onCancel} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-yt-text-secondary transition-colors hover:bg-yt-card">
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -159,7 +159,7 @@ function DotsMenu({ menuId, openMenu, setOpenMenu, items }: {
     <div className="relative shrink-0">
       <button
         onClick={e => { e.stopPropagation(); setOpenMenu(isOpen ? null : menuId) }}
-        className="flex h-8 w-8 items-center justify-center rounded-xl text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-zinc-600 dark:hover:bg-zinc-800 dark:hover:text-zinc-300"
+        className="flex h-8 w-8 items-center justify-center rounded-xl text-yt-text-secondary transition-colors hover:bg-yt-card hover:text-yt-text"
       >
         <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
@@ -168,7 +168,7 @@ function DotsMenu({ menuId, openMenu, setOpenMenu, items }: {
 
       {isOpen && (
         <div
-          className="absolute right-0 top-full z-30 mt-1 w-44 overflow-hidden rounded-xl bg-white py-1 shadow-lg ring-1 ring-zinc-200 dark:bg-zinc-800 dark:ring-zinc-700"
+          className="absolute right-0 top-full z-30 mt-1 w-44 overflow-hidden rounded-xl bg-yt-card py-1 shadow-lg ring-1 ring-yt-border"
           onClick={e => e.stopPropagation()}
         >
           {items.map(item => (
@@ -178,7 +178,7 @@ function DotsMenu({ menuId, openMenu, setOpenMenu, items }: {
               className={`flex w-full items-center gap-2.5 px-3 py-2.5 text-sm transition-colors
                 ${item.danger
                   ? 'text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20'
-                  : 'text-zinc-700 hover:bg-zinc-50 dark:text-zinc-300 dark:hover:bg-zinc-700'
+                  : 'text-yt-text hover:bg-yt-bg-alt'
                 }`}
             >
               {item.icon}
@@ -349,9 +349,9 @@ export default function TaskPanel({
       {/* Header */}
       <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">My Tasks</h2>
+          <h2 className="text-base font-semibold text-yt-text">My Tasks</h2>
           {tasks.length > 0 && (
-            <span className="flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-zinc-200 px-1.5 text-xs font-semibold text-zinc-600 dark:bg-zinc-700 dark:text-zinc-300">
+            <span className="flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-yt-border px-1.5 text-xs font-semibold text-yt-text-secondary">
               {tasks.length}
             </span>
           )}
@@ -360,8 +360,8 @@ export default function TaskPanel({
           onClick={() => { setShowAdd(v => !v); setNewDesc('') }}
           className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-semibold transition-all duration-200 active:scale-95
             ${showAdd
-              ? 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400'
-              : 'bg-violet-600 text-white shadow-sm shadow-violet-600/25 hover:bg-violet-700'}`}
+              ? 'bg-yt-card text-yt-text-secondary'
+              : 'bg-yt-red text-white shadow-sm shadow-yt-red/25 hover:bg-yt-red-hover'}`}
         >
           {showAdd ? (
             <>
@@ -383,7 +383,7 @@ export default function TaskPanel({
 
       {/* Add form */}
       {showAdd && (
-        <form onSubmit={handleAdd} className="mb-3 overflow-hidden rounded-2xl bg-white ring-2 ring-violet-300 dark:bg-zinc-900 dark:ring-violet-700/60">
+        <form onSubmit={handleAdd} className="mb-3 overflow-hidden rounded-2xl bg-yt-card ring-2 ring-yt-red/40">
           <div className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center">
             <input
               autoFocus
@@ -391,13 +391,13 @@ export default function TaskPanel({
               onChange={e => setNewDesc(e.target.value)}
               placeholder="What are you working on?"
               maxLength={120}
-              className="min-w-0 flex-1 bg-transparent text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none dark:text-zinc-50"
+              className="min-w-0 flex-1 bg-transparent text-sm text-yt-text placeholder-yt-text-secondary focus:outline-none"
             />
             <div className="flex items-center gap-2">
               <select
                 value={newDept}
                 onChange={e => setNewDept(e.target.value as Department)}
-                className="flex-1 rounded-xl border border-zinc-200 bg-white px-3 py-2 text-xs font-medium text-zinc-700 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 sm:flex-none"
+                className="flex-1 rounded-xl border border-yt-border bg-yt-card px-3 py-2 text-xs font-medium text-yt-text-secondary focus:outline-none sm:flex-none"
               >
                 <option value="automation">Automation</option>
                 <option value="webdev">Web Dev</option>
@@ -405,7 +405,7 @@ export default function TaskPanel({
               <button
                 type="submit"
                 disabled={!newDesc.trim() || isPending}
-                className="flex shrink-0 items-center gap-1.5 rounded-xl bg-violet-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-violet-700 disabled:opacity-50 active:scale-95"
+                className="flex shrink-0 items-center gap-1.5 rounded-xl bg-yt-red px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-yt-red-hover disabled:opacity-50 active:scale-95"
               >
                 Add
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -419,14 +419,14 @@ export default function TaskPanel({
 
       {/* Empty */}
       {tasks.length === 0 && !showAdd && (
-        <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-200 py-12 dark:border-zinc-800">
-          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-100 dark:bg-zinc-800">
-            <svg className="h-6 w-6 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-yt-border py-12">
+          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-yt-card">
+            <svg className="h-6 w-6 text-yt-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
             </svg>
           </div>
-          <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">No active tasks</p>
-          <p className="mt-1 text-xs text-zinc-400">Add one to let your team know what you&apos;re working on.</p>
+          <p className="text-sm font-medium text-yt-text-secondary">No active tasks</p>
+          <p className="mt-1 text-xs text-yt-text-secondary">Add one to let your team know what you&apos;re working on.</p>
         </div>
       )}
 
@@ -435,19 +435,19 @@ export default function TaskPanel({
 
           {/* Currently working on */}
           {current && (
-            <div className="rounded-2xl bg-white ring-2 ring-violet-300 dark:bg-zinc-900 dark:ring-violet-700/60">
+            <div className="rounded-2xl bg-yt-card ring-2 ring-yt-red/40">
               {/* Active header */}
-              <div className="flex items-center justify-between rounded-t-2xl bg-violet-50 px-4 py-2.5 dark:bg-violet-900/20">
+              <div className="flex items-center justify-between rounded-t-2xl bg-yt-red/10 px-4 py-2.5">
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-500 opacity-60" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-violet-500" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yt-red opacity-60" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-yt-red" />
                   </span>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-violet-600 dark:text-violet-400">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-yt-text-secondary">
                     Currently working on
                   </p>
                 </div>
-                <span className="flex items-center gap-1.5 text-xs font-semibold text-violet-600 dark:text-violet-400">
+                <span className="flex items-center gap-1.5 text-xs font-semibold text-yt-text-secondary">
                   <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -457,7 +457,7 @@ export default function TaskPanel({
 
               <div className="flex flex-wrap items-center gap-2 px-4 py-3.5">
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center">
-                  <span className="h-2.5 w-2.5 rounded-full bg-violet-500" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-yt-red" />
                 </span>
                 {editingId === current.id ? (
                   <InlineEditForm
@@ -467,7 +467,7 @@ export default function TaskPanel({
                   />
                 ) : (
                   <>
-                    <p className="min-w-0 flex-1 text-sm font-medium text-zinc-900 dark:text-zinc-50">
+                    <p className="min-w-0 flex-1 text-sm font-medium text-yt-text">
                       {current.description}
                     </p>
                     <DeptBadge d={current.department} />
@@ -489,24 +489,24 @@ export default function TaskPanel({
 
           {/* Queue */}
           {queue.length > 0 && (
-            <div className="rounded-2xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
-              <div className="flex items-center gap-2 border-b border-zinc-100 px-4 py-2.5 dark:border-zinc-800">
-                <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+            <div className="rounded-2xl bg-yt-card ring-1 ring-yt-border">
+              <div className="flex items-center gap-2 border-b border-yt-border px-4 py-2.5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-yt-text-secondary">
                   {current ? 'In Progress' : 'Task queue'}
                 </p>
                 {current && (
-                  <span className="text-xs text-zinc-400">— double-click to switch</span>
+                  <span className="text-xs text-yt-text-secondary">— double-click to switch</span>
                 )}
               </div>
               {queue.map((task, i) => (
                 <div
                   key={task.id}
-                  className={`group flex items-center gap-3 px-4 py-3 ${i !== 0 ? 'border-t border-zinc-100 dark:border-zinc-800' : ''}`}
+                  className={`group flex items-center gap-3 px-4 py-3 ${i !== 0 ? 'border-t border-yt-border' : ''}`}
                 >
                   {editingId === task.id ? (
                     <>
                       <span className="flex h-5 w-5 shrink-0 items-center justify-center">
-                        <span className="h-2.5 w-2.5 rounded-full border-2 border-zinc-300 dark:border-zinc-600" />
+                        <span className="h-2.5 w-2.5 rounded-full border-2 border-yt-border" />
                       </span>
                       <InlineEditForm
                         initial={{ desc: task.description, dept: task.department }}
@@ -517,19 +517,19 @@ export default function TaskPanel({
                   ) : (
                     <>
                       <span className="flex h-5 w-5 shrink-0 items-center justify-center">
-                        <span className="h-2.5 w-2.5 rounded-full border-2 border-zinc-300 dark:border-zinc-600" />
+                        <span className="h-2.5 w-2.5 rounded-full border-2 border-yt-border" />
                       </span>
                       <div
                         className="flex min-w-0 flex-1 items-center gap-3"
                         onDoubleClick={() => handleSetCurrent(task.id)}
                         title="Double-click to switch to this task"
                       >
-                        <p className="min-w-0 flex-1 truncate text-sm text-zinc-700 dark:text-zinc-300">
+                        <p className="min-w-0 flex-1 truncate text-sm text-yt-text">
                           {task.description}
                         </p>
                         <DeptBadge d={task.department} />
                         {task.total_seconds > 0 && (
-                          <span className="shrink-0 text-xs text-zinc-400 tabular-nums">
+                          <span className="shrink-0 text-xs text-yt-text-secondary tabular-nums">
                             {fmt(task.total_seconds)}
                           </span>
                         )}
@@ -559,7 +559,7 @@ export default function TaskPanel({
         <div className="mt-4">
           <button
             onClick={() => setShowDone(v => !v)}
-            className="flex items-center gap-2 rounded-lg px-1 py-1 text-xs font-semibold uppercase tracking-wider text-zinc-400 transition-colors hover:text-zinc-600 dark:hover:text-zinc-300"
+            className="flex items-center gap-2 rounded-lg px-1 py-1 text-xs font-semibold uppercase tracking-wider text-yt-text-secondary transition-colors hover:text-yt-text"
           >
             <svg
               className={`h-3.5 w-3.5 transition-transform duration-200 ${showDone ? 'rotate-90' : ''}`}
@@ -571,25 +571,25 @@ export default function TaskPanel({
           </button>
 
           {showDone && (
-            <div className="mt-2 rounded-2xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+            <div className="mt-2 rounded-2xl bg-yt-card ring-1 ring-yt-border">
               {completed.map((task, i) => (
                 <div
                   key={task.id}
-                  className={`flex items-center gap-3 px-4 py-3 ${i !== 0 ? 'border-t border-zinc-100 dark:border-zinc-800' : ''}`}
+                  className={`flex items-center gap-3 px-4 py-3 ${i !== 0 ? 'border-t border-yt-border' : ''}`}
                 >
                   <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-900/20">
                     <svg className="h-3 w-3 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="min-w-0 flex-1 truncate text-sm text-zinc-500 dark:text-zinc-500">
+                  <p className="min-w-0 flex-1 truncate text-sm text-yt-text-secondary">
                     {task.description}
                   </p>
                   <DeptBadge d={task.department} />
-                  <span className="shrink-0 text-xs font-medium text-zinc-500 tabular-nums">
+                  <span className="shrink-0 text-xs font-medium text-yt-text-secondary tabular-nums">
                     {fmt(task.total_seconds)}
                   </span>
-                  <span className="hidden shrink-0 text-xs text-zinc-400 sm:inline">
+                  <span className="hidden shrink-0 text-xs text-yt-text-secondary sm:inline">
                     {timeAgo(task.completed_at)}
                   </span>
                   <DotsMenu

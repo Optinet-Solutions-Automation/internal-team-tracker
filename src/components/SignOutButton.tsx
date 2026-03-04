@@ -12,7 +12,7 @@ export default function SignOutButton({ action }: { action: () => Promise<void> 
       <button
         onClick={() => setShowConfirm(true)}
         disabled={isPending}
-        className="rounded-xl border border-zinc-200 px-3 py-1.5 text-xs font-medium text-zinc-600 transition-colors hover:bg-zinc-50 disabled:opacity-60 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
+        className="rounded-xl border border-yt-border px-3 py-1.5 text-xs font-medium text-yt-text-secondary transition-colors hover:bg-yt-bg-alt disabled:opacity-60"
       >
         <span className="hidden sm:inline">Sign out</span>
         <svg className="h-4 w-4 sm:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">

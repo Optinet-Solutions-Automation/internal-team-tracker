@@ -49,7 +49,7 @@ export default function Avatar({ avatarUrl, name, size = 'md' }: AvatarProps) {
 
   return (
     <div
-      className={`${wrap} flex items-center justify-center rounded-full bg-violet-100 text-violet-500 dark:bg-violet-900/30 dark:text-violet-400`}
+      className={`${wrap} flex items-center justify-center rounded-full bg-yt-red/10 text-yt-red`}
     >
       <UserIcon className={icon} />
     </div>

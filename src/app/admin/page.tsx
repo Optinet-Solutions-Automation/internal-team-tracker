@@ -38,7 +38,7 @@ const shiftLabel: Record<ShiftStatus, string> = {
 function presenceDot(p?: PresenceStatus) {
   if (p === 'online') return 'bg-emerald-400'
   if (p === 'busy')   return 'bg-red-400'
-  return 'bg-zinc-300 dark:bg-zinc-600'
+  return 'bg-yt-text-secondary'
 }
 
 type CurrentTask = {
@@ -68,13 +68,13 @@ const deptLabel = { automation: 'Automation', webdev: 'Web Dev' }
 
 function RoleBadge({ role }: { role: 'admin' | 'employee' }) {
   return role === 'admin' ? (
-    <span className="inline-flex items-center gap-1 rounded-full bg-violet-100 px-2.5 py-0.5 text-xs font-medium text-violet-700 dark:bg-violet-900/30 dark:text-violet-300">
-      <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
+    <span className="inline-flex items-center gap-1 rounded-full bg-yt-red/10 px-2.5 py-0.5 text-xs font-medium text-yt-red">
+      <span className="h-1.5 w-1.5 rounded-full bg-yt-red" />
       Admin
     </span>
   ) : (
-    <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
-      <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+    <span className="inline-flex items-center gap-1 rounded-full bg-yt-link/10 px-2.5 py-0.5 text-xs font-medium text-yt-link">
+      <span className="h-1.5 w-1.5 rounded-full bg-yt-link" />
       Employee
     </span>
   )
@@ -127,25 +127,25 @@ export default async function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 pb-20 dark:bg-zinc-950 md:pb-0">
+    <div className="min-h-screen bg-yt-bg">
 
       {/* ── Top Nav ── */}
-      <nav className="sticky top-0 z-20 border-b border-zinc-200/80 bg-white/90 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-900/90">
+      <nav className="sticky top-0 z-20 border-b border-yt-border/80 bg-yt-bg/90 backdrop-blur-md">
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+              className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm text-yt-text-secondary transition-colors hover:bg-yt-bg-alt hover:text-yt-text"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
               Dashboard
             </Link>
-            <span className="text-zinc-200 dark:text-zinc-700">/</span>
-            <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">Admin Panel</span>
+            <span className="text-yt-border">/</span>
+            <span className="text-sm font-semibold text-yt-text">Admin Panel</span>
           </div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-100 px-3 py-1 text-xs font-semibold text-violet-700 dark:bg-violet-900/30 dark:text-violet-300">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-yt-red/10 px-3 py-1 text-xs font-semibold text-yt-red">
             <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
             </svg>
@@ -162,10 +162,10 @@ export default async function AdminPage() {
             {
               label: 'Total Members',
               value: total,
-              color: 'text-zinc-900 dark:text-zinc-50',
-              bg: 'bg-zinc-100 dark:bg-zinc-800',
+              color: 'text-yt-text',
+              bg: 'bg-yt-bg-alt',
               icon: (
-                <svg className="h-4 w-4 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-4 w-4 text-yt-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               ),
@@ -215,13 +215,13 @@ export default async function AdminPage() {
               ),
             },
           ].map((stat) => (
-            <div key={stat.label} className="flex flex-col gap-3 rounded-2xl bg-white p-4 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+            <div key={stat.label} className="flex flex-col gap-3 rounded-2xl bg-yt-card p-4 ring-1 ring-yt-border">
               <div className={`flex h-8 w-8 items-center justify-center rounded-xl ${stat.bg}`}>
                 {stat.icon}
               </div>
               <div>
                 <p className={`text-2xl font-bold tabular-nums ${stat.color}`}>{stat.value}</p>
-                <p className="mt-0.5 text-xs font-medium text-zinc-500 dark:text-zinc-400">{stat.label}</p>
+                <p className="mt-0.5 text-xs font-medium text-yt-text-secondary">{stat.label}</p>
               </div>
             </div>
           ))}
@@ -230,19 +230,19 @@ export default async function AdminPage() {
         {/* ── Department Activity ── */}
         {(automationCount > 0 || webdevCount > 0) && (
           <div className="flex flex-wrap gap-3">
-            <p className="w-full text-xs font-semibold uppercase tracking-wider text-zinc-400">Active tasks by dept.</p>
+            <p className="w-full text-xs font-semibold uppercase tracking-wider text-yt-text-secondary">Active tasks by dept.</p>
             {automationCount > 0 && (
-              <div className="flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+              <div className="flex items-center gap-2.5 rounded-2xl bg-yt-card px-4 py-3 ring-1 ring-yt-border">
                 <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
-                <span className="text-sm font-bold text-zinc-900 dark:text-zinc-50">{automationCount}</span>
-                <span className="text-sm text-zinc-500">in Automation</span>
+                <span className="text-sm font-bold text-yt-text">{automationCount}</span>
+                <span className="text-sm text-yt-text-secondary">in Automation</span>
               </div>
             )}
             {webdevCount > 0 && (
-              <div className="flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+              <div className="flex items-center gap-2.5 rounded-2xl bg-yt-card px-4 py-3 ring-1 ring-yt-border">
                 <span className="h-2.5 w-2.5 rounded-full bg-sky-400" />
-                <span className="text-sm font-bold text-zinc-900 dark:text-zinc-50">{webdevCount}</span>
-                <span className="text-sm text-zinc-500">in Web Dev</span>
+                <span className="text-sm font-bold text-yt-text">{webdevCount}</span>
+                <span className="text-sm text-yt-text-secondary">in Web Dev</span>
               </div>
             )}
           </div>
@@ -258,7 +258,7 @@ export default async function AdminPage() {
           return (
             <section>
               <div className="mb-4 flex items-center gap-2">
-                <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">Currently Working</h2>
+                <h2 className="text-base font-semibold text-yt-text">Currently Working</h2>
                 <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-400 px-1.5 text-xs font-bold text-white">
                   {activeRows.length}
                 </span>
@@ -267,32 +267,32 @@ export default async function AdminPage() {
                 {activeRows.map(({ task, profile }) => {
                   const secs = snapshotSeconds(task.total_seconds, task.session_started_at)
                   return (
-                    <div key={task.user_id} className="flex flex-col gap-3 rounded-2xl bg-white p-4 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+                    <div key={task.user_id} className="flex flex-col gap-3 rounded-2xl bg-yt-card p-4 ring-1 ring-yt-border">
                       <div className="flex items-center gap-3">
                         <div className="relative shrink-0">
                           <Avatar avatarUrl={profile!.avatar_url} name={profile!.full_name} size="sm" />
-                          <span className={`absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full ring-1 ring-white dark:ring-zinc-900 ${presenceDot(profile!.presence_status)}`} />
+                          <span className={`absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full ring-1 ring-yt-card ${presenceDot(profile!.presence_status)}`} />
                         </div>
                         <div className="min-w-0">
-                          <p className="truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                          <p className="truncate text-sm font-semibold text-yt-text">
                             {profile!.full_name ?? 'No name'}
                           </p>
-                          <p className="truncate text-xs text-zinc-400">{shiftLabel[(profile!.shift_status ?? 'off_shift') as ShiftStatus]}</p>
+                          <p className="truncate text-xs text-yt-text-secondary">{shiftLabel[(profile!.shift_status ?? 'off_shift') as ShiftStatus]}</p>
                         </div>
                       </div>
-                      <div className="rounded-xl bg-zinc-50 px-3 py-2.5 dark:bg-zinc-800/60">
+                      <div className="rounded-xl bg-yt-bg-alt px-3 py-2.5">
                         <div className="flex items-center justify-between gap-2">
                           <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${deptBadge[task.department]}`}>
                             {deptLabel[task.department]}
                           </span>
-                          <span className="flex items-center gap-1 text-xs font-semibold tabular-nums text-zinc-500 dark:text-zinc-400">
+                          <span className="flex items-center gap-1 text-xs font-semibold tabular-nums text-yt-text-secondary">
                             <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             {secs > 0 ? formatDuration(secs) : '< 1m'}
                           </span>
                         </div>
-                        <p className="mt-1.5 text-xs text-zinc-700 dark:text-zinc-300">{task.description}</p>
+                        <p className="mt-1.5 text-xs text-yt-text">{task.description}</p>
                       </div>
                     </div>
                   )
@@ -305,7 +305,7 @@ export default async function AdminPage() {
         {/* ── Pending Approvals ── */}
         <section>
           <div className="mb-4 flex items-center gap-2">
-            <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">Pending Approvals</h2>
+            <h2 className="text-base font-semibold text-yt-text">Pending Approvals</h2>
             {pending.length > 0 && (
               <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-400 px-1.5 text-xs font-bold text-white">
                 {pending.length}
@@ -314,30 +314,30 @@ export default async function AdminPage() {
           </div>
 
           {pending.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-200 py-12 dark:border-zinc-800">
+            <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-yt-border py-12">
               <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 dark:bg-emerald-900/20">
                 <svg className="h-6 w-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <p className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">All caught up!</p>
-              <p className="mt-1 text-xs text-zinc-400">No pending requests right now.</p>
+              <p className="text-sm font-semibold text-yt-text">All caught up!</p>
+              <p className="mt-1 text-xs text-yt-text-secondary">No pending requests right now.</p>
             </div>
           ) : (
             <div className="space-y-3">
               {pending.map((profile: Profile) => (
-                <div key={profile.id} className="overflow-hidden rounded-2xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+                <div key={profile.id} className="overflow-hidden rounded-2xl bg-yt-card ring-1 ring-yt-border">
                   {/* Amber accent for pending */}
                   <div className="h-0.5 w-full bg-gradient-to-r from-amber-400 to-orange-400" />
                   <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-3">
                       <Avatar avatarUrl={profile.avatar_url} name={profile.full_name} size="md" />
                       <div>
-                        <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                        <p className="text-sm font-semibold text-yt-text">
                           {profile.full_name ?? 'No name'}
                         </p>
-                        <p className="text-xs text-zinc-500 dark:text-zinc-400">{profile.email}</p>
-                        <p className="mt-0.5 text-xs text-zinc-400 dark:text-zinc-500">
+                        <p className="text-xs text-yt-text-secondary">{profile.email}</p>
+                        <p className="mt-0.5 text-xs text-yt-text-secondary">
                           Requested {new Date(profile.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                         </p>
                       </div>
@@ -356,37 +356,37 @@ export default async function AdminPage() {
 
         {/* ── Team Members ── */}
         <section>
-          <h2 className="mb-4 text-base font-semibold text-zinc-900 dark:text-zinc-50">
+          <h2 className="mb-4 text-base font-semibold text-yt-text">
             Team Members
-            <span className="ml-2 text-sm font-normal text-zinc-400">({approved.length})</span>
+            <span className="ml-2 text-sm font-normal text-yt-text-secondary">({approved.length})</span>
           </h2>
 
-          <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+          <div className="overflow-hidden rounded-2xl bg-yt-card ring-1 ring-yt-border">
             {approved.map((profile: Profile, i: number) => (
               <div
                 key={profile.id}
-                className={`flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between ${i !== 0 ? 'border-t border-zinc-100 dark:border-zinc-800' : ''}`}
+                className={`flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between ${i !== 0 ? 'border-t border-yt-border' : ''}`}
               >
                 <div className="flex items-center gap-3">
                   <div className="relative shrink-0">
                     <Avatar avatarUrl={profile.avatar_url} name={profile.full_name} size="sm" />
-                    <span className={`absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full ring-1 ring-white dark:ring-zinc-900 ${presenceDot(profile.presence_status)}`} />
+                    <span className={`absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full ring-1 ring-yt-card ${presenceDot(profile.presence_status)}`} />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                      <p className="text-sm font-semibold text-yt-text">
                         {profile.full_name ?? 'No name'}
                       </p>
                       {profile.id === user.id && (
-                        <span className="rounded-full bg-zinc-100 px-1.5 py-0.5 text-xs text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">you</span>
+                        <span className="rounded-full bg-yt-bg-alt px-1.5 py-0.5 text-xs text-yt-text-secondary">you</span>
                       )}
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <p className="text-xs text-zinc-400">{profile.email}</p>
+                      <p className="text-xs text-yt-text-secondary">{profile.email}</p>
                       <span className={`text-xs font-medium
                         ${profile.presence_status === 'online'  ? 'text-emerald-600 dark:text-emerald-400' : ''}
                         ${profile.presence_status === 'busy'    ? 'text-red-500 dark:text-red-400' : ''}
-                        ${!profile.presence_status || profile.presence_status === 'offline' ? 'text-zinc-400' : ''}
+                        ${!profile.presence_status || profile.presence_status === 'offline' ? 'text-yt-text-secondary' : ''}
                       `}>
                         · {shiftLabel[profile.shift_status ?? 'off_shift']}
                       </span>
@@ -399,18 +399,18 @@ export default async function AdminPage() {
                   const t = currentTaskMap.get(profile.id)!
                   const secs = snapshotSeconds(t.total_seconds, t.session_started_at)
                   return (
-                    <div className="flex items-center gap-2 rounded-xl bg-zinc-50 px-3 py-2 dark:bg-zinc-800/60">
-                      <svg className="h-3.5 w-3.5 shrink-0 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="flex items-center gap-2 rounded-xl bg-yt-bg-alt px-3 py-2">
+                      <svg className="h-3.5 w-3.5 shrink-0 text-yt-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                       </svg>
-                      <p className="min-w-0 flex-1 truncate text-xs text-zinc-600 dark:text-zinc-300">
+                      <p className="min-w-0 flex-1 truncate text-xs text-yt-text">
                         {t.description}
                       </p>
                       <span className={`shrink-0 rounded-full px-1.5 py-0.5 text-xs font-medium ${deptBadge[t.department]}`}>
                         {deptLabel[t.department]}
                       </span>
                       {secs > 0 && (
-                        <span className="shrink-0 text-xs text-zinc-400 tabular-nums">{formatDuration(secs)}</span>
+                        <span className="shrink-0 text-xs text-yt-text-secondary tabular-nums">{formatDuration(secs)}</span>
                       )}
                     </div>
                   )
@@ -435,21 +435,21 @@ export default async function AdminPage() {
         {/* ── Rejected ── */}
         {rejected.length > 0 && (
           <section>
-            <h2 className="mb-4 text-base font-semibold text-zinc-900 dark:text-zinc-50">
+            <h2 className="mb-4 text-base font-semibold text-yt-text">
               Rejected
-              <span className="ml-2 text-sm font-normal text-zinc-400">({rejected.length})</span>
+              <span className="ml-2 text-sm font-normal text-yt-text-secondary">({rejected.length})</span>
             </h2>
-            <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+            <div className="overflow-hidden rounded-2xl bg-yt-card ring-1 ring-yt-border">
               {rejected.map((profile: Profile, i: number) => (
                 <div
                   key={profile.id}
-                  className={`flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between ${i !== 0 ? 'border-t border-zinc-100 dark:border-zinc-800' : ''}`}
+                  className={`flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between ${i !== 0 ? 'border-t border-yt-border' : ''}`}
                 >
                   <div className="flex items-center gap-3 opacity-60">
                     <Avatar avatarUrl={profile.avatar_url} name={profile.full_name} size="sm" />
                     <div>
-                      <p className="text-sm font-medium text-zinc-900 dark:text-zinc-50">{profile.full_name ?? 'No name'}</p>
-                      <p className="text-xs text-zinc-400">{profile.email}</p>
+                      <p className="text-sm font-medium text-yt-text">{profile.full_name ?? 'No name'}</p>
+                      <p className="text-xs text-yt-text-secondary">{profile.email}</p>
                     </div>
                   </div>
                   <AdminReapprove
@@ -465,26 +465,26 @@ export default async function AdminPage() {
         {/* ── Task Overview ── */}
         {tasksByUser.size > 0 && (
           <section>
-            <h2 className="mb-4 text-base font-semibold text-zinc-900 dark:text-zinc-50">Task Overview</h2>
+            <h2 className="mb-4 text-base font-semibold text-yt-text">Task Overview</h2>
             <div className="space-y-4">
               {[...(allProfiles ?? [])].filter((p: Profile) => tasksByUser.has(p.id)).map((profile: Profile) => {
                 const tasks = tasksByUser.get(profile.id) ?? []
                 return (
-                  <div key={profile.id} className="overflow-hidden rounded-2xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
-                    <div className="flex items-center gap-3 border-b border-zinc-100 px-4 py-3 dark:border-zinc-800">
+                  <div key={profile.id} className="overflow-hidden rounded-2xl bg-yt-card ring-1 ring-yt-border">
+                    <div className="flex items-center gap-3 border-b border-yt-border px-4 py-3">
                       <Avatar avatarUrl={profile.avatar_url} name={profile.full_name} size="sm" />
                       <div className="min-w-0 flex-1">
-                        <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                        <p className="text-sm font-semibold text-yt-text">
                           {profile.full_name ?? 'No name'}
                         </p>
-                        <p className="truncate text-xs text-zinc-400">{profile.email}</p>
+                        <p className="truncate text-xs text-yt-text-secondary">{profile.email}</p>
                       </div>
-                      <span className="shrink-0 rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
+                      <span className="shrink-0 rounded-full bg-yt-bg-alt px-2 py-0.5 text-xs text-yt-text-secondary">
                         {tasks.length} task{tasks.length !== 1 ? 's' : ''}
                       </span>
                     </div>
 
-                    <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
+                    <div className="divide-y divide-yt-border">
                       {tasks.map((task: AdminTask) => {
                         const isActive = !task.completed_at
                         const displaySecs = isActive
@@ -492,18 +492,18 @@ export default async function AdminPage() {
                           : task.total_seconds
                         return (
                           <div key={task.id} className="flex flex-wrap items-center gap-x-3 gap-y-1.5 px-4 py-3">
-                            <span className={`h-2 w-2 shrink-0 rounded-full ${task.session_started_at ? 'bg-emerald-400' : isActive ? 'bg-zinc-300 dark:bg-zinc-600' : 'bg-zinc-200 dark:bg-zinc-700'}`} />
-                            <p className="min-w-0 flex-1 truncate text-xs text-zinc-700 dark:text-zinc-300">
+                            <span className={`h-2 w-2 shrink-0 rounded-full ${task.session_started_at ? 'bg-emerald-400' : isActive ? 'bg-yt-text-secondary' : 'bg-yt-border'}`} />
+                            <p className="min-w-0 flex-1 truncate text-xs text-yt-text">
                               {task.description}
                             </p>
                             <span className={`shrink-0 rounded-full px-1.5 py-0.5 text-xs font-medium ${deptBadge[task.department]}`}>
                               {deptLabel[task.department]}
                             </span>
-                            <span className="shrink-0 text-xs text-zinc-400" title="Created">
+                            <span className="shrink-0 text-xs text-yt-text-secondary" title="Created">
                               {new Date(task.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                             </span>
                             {task.completed_at ? (
-                              <span className="shrink-0 text-xs text-zinc-400" title="Completed">
+                              <span className="shrink-0 text-xs text-yt-text-secondary" title="Completed">
                                 → {new Date(task.completed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                               </span>
                             ) : (
@@ -524,28 +524,6 @@ export default async function AdminPage() {
         )}
 
       </main>
-
-      {/* ── Mobile Bottom Nav ── */}
-      <nav className="fixed bottom-0 left-0 right-0 z-20 border-t border-zinc-200/80 bg-white/95 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-900/95 md:hidden">
-        <div className="flex h-16 items-center justify-around px-6">
-          <Link href="/" className="flex flex-col items-center gap-1 min-w-[3rem]">
-            <div className="flex h-7 w-7 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800">
-              <svg className="h-4 w-4 text-zinc-500 dark:text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-            </div>
-            <span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">Home</span>
-          </Link>
-          <Link href="/admin" className="flex flex-col items-center gap-1 min-w-[3rem]">
-            <div className="flex h-7 w-7 items-center justify-center rounded-xl bg-violet-100 dark:bg-violet-900/30">
-              <svg className="h-4 w-4 text-violet-600 dark:text-violet-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <span className="text-[10px] font-semibold text-violet-600 dark:text-violet-400">Admin</span>
-          </Link>
-        </div>
-      </nav>
 
     </div>
   )

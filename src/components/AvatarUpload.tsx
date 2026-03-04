@@ -103,7 +103,7 @@ export default function AvatarUpload({ userId, avatarUrl, name, size = 'lg' }: P
       <button
         type="button"
         onClick={() => !uploading && fileRef.current?.click()}
-        className="group relative cursor-pointer rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2"
+        className="group relative cursor-pointer rounded-full focus:outline-none"
         title="Update profile photo"
         disabled={uploading}
       >
@@ -113,11 +113,11 @@ export default function AvatarUpload({ userId, avatarUrl, name, size = 'lg' }: P
           <img
             src={preview}
             alt={name ?? 'Avatar'}
-            className={`${wrap} rounded-full object-cover ring-2 ring-white dark:ring-zinc-900`}
+            className={`${wrap} rounded-full object-cover ring-2 ring-yt-card`}
             onError={() => setImgFailed(true)}
           />
         ) : (
-          <div className={`${wrap} flex items-center justify-center rounded-full bg-violet-100 text-violet-500 ring-2 ring-white dark:bg-violet-900/30 dark:text-violet-400 dark:ring-zinc-900`}>
+          <div className={`${wrap} flex items-center justify-center rounded-full bg-yt-red/10 text-yt-red ring-2 ring-yt-card`}>
             <UserIcon className={icon} />
           </div>
         )}

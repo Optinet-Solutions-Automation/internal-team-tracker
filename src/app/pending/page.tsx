@@ -33,12 +33,12 @@ export default async function PendingPage() {
   })
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-zinc-50 p-4 dark:bg-zinc-950">
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-yt-bg p-4">
 
       {/* Background blobs */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className={`absolute -left-32 -top-32 h-96 w-96 rounded-full blur-3xl opacity-30 ${isRejected ? 'bg-red-300 dark:bg-red-900/40' : 'bg-violet-300 dark:bg-violet-900/40'}`} />
-        <div className={`absolute -bottom-32 -right-32 h-96 w-96 rounded-full blur-3xl opacity-30 ${isRejected ? 'bg-orange-200 dark:bg-orange-900/30' : 'bg-indigo-200 dark:bg-indigo-900/30'}`} />
+        <div className={`absolute -left-32 -top-32 h-96 w-96 rounded-full blur-3xl opacity-30 ${isRejected ? 'bg-red-300 dark:bg-red-900/40' : 'bg-yt-red/30'}`} />
+        <div className={`absolute -bottom-32 -right-32 h-96 w-96 rounded-full blur-3xl opacity-30 ${isRejected ? 'bg-orange-200 dark:bg-orange-900/30' : 'bg-yt-red/20'}`} />
         <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/20 blur-2xl" />
       </div>
 
@@ -46,18 +46,18 @@ export default async function PendingPage() {
 
         {/* App logo */}
         <div className="mb-6 flex justify-center">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
-            <svg className="h-5 w-5 text-zinc-500 dark:text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-yt-card shadow-sm ring-1 ring-yt-border">
+            <svg className="h-5 w-5 text-yt-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
           </div>
         </div>
 
         {/* Card */}
-        <div className="overflow-hidden rounded-3xl bg-white shadow-xl shadow-zinc-900/5 ring-1 ring-zinc-200/80 dark:bg-zinc-900 dark:ring-zinc-800">
+        <div className="overflow-hidden rounded-3xl bg-yt-card shadow-xl shadow-yt-text/5 ring-1 ring-yt-border">
 
           {/* Top accent */}
-          <div className={`h-1 w-full ${isRejected ? 'bg-gradient-to-r from-red-500 to-orange-500' : 'bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500'}`} />
+          <div className={`h-1 w-full ${isRejected ? 'bg-gradient-to-r from-red-500 to-orange-500' : 'bg-yt-red'}`} />
 
           <div className="p-8">
 
@@ -66,18 +66,18 @@ export default async function PendingPage() {
               <div className="relative">
                 {!isRejected && (
                   <>
-                    <span className="absolute inset-0 animate-ping rounded-full bg-violet-400/25" style={{ animationDuration: '2s' }} />
-                    <span className="absolute inset-0 animate-ping rounded-full bg-violet-300/15" style={{ animationDuration: '2s', animationDelay: '0.5s' }} />
+                    <span className="absolute inset-0 animate-ping rounded-full bg-yt-red/25" style={{ animationDuration: '2s' }} />
+                    <span className="absolute inset-0 animate-ping rounded-full bg-yt-red/15" style={{ animationDuration: '2s', animationDelay: '0.5s' }} />
                   </>
                 )}
-                <div className="relative ring-4 ring-white rounded-full dark:ring-zinc-900 shadow-lg">
+                <div className="relative ring-4 ring-yt-card rounded-full shadow-lg">
                   <Avatar
                     avatarUrl={user.user_metadata?.avatar_url}
                     name={name}
                     size="xl"
                   />
                 </div>
-                <span className={`absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full ring-2 ring-white shadow-sm dark:ring-zinc-900 ${isRejected ? 'bg-red-500' : 'bg-amber-400'}`}>
+                <span className={`absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full ring-2 ring-yt-card shadow-sm ${isRejected ? 'bg-red-500' : 'bg-amber-400'}`}>
                   {isRejected ? (
                     <svg className="h-3.5 w-3.5 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -93,10 +93,10 @@ export default async function PendingPage() {
 
             {/* Heading */}
             <div className="mb-5 text-center">
-              <h1 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
+              <h1 className="text-xl font-bold text-yt-text">
                 {isRejected ? 'Access denied' : "You're in the queue"}
               </h1>
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{name}</p>
+              <p className="mt-1 text-sm text-yt-text-secondary">{name}</p>
             </div>
 
             {/* Status panel */}
@@ -127,7 +127,7 @@ export default async function PendingPage() {
             </div>
 
             {!isRejected && (
-              <p className="mb-5 text-center text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+              <p className="mb-5 text-center text-sm leading-relaxed text-yt-text-secondary">
                 An admin will review your request. Once approved, you will have full access to the workspace.
               </p>
             )}
@@ -135,9 +135,9 @@ export default async function PendingPage() {
             {/* Progress dots — pending only */}
             {!isRejected && (
               <div className="mb-6 flex items-center justify-center gap-1.5">
-                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-violet-400" style={{ animationDelay: '0ms' }} />
-                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-violet-400" style={{ animationDelay: '150ms' }} />
-                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-violet-400" style={{ animationDelay: '300ms' }} />
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-yt-red" style={{ animationDelay: '0ms' }} />
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-yt-red" style={{ animationDelay: '150ms' }} />
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-yt-red" style={{ animationDelay: '300ms' }} />
               </div>
             )}
 
@@ -145,7 +145,7 @@ export default async function PendingPage() {
             <form action={signOut}>
               <button
                 type="submit"
-                className="w-full rounded-xl border border-zinc-200 py-3 text-sm font-medium text-zinc-500 transition-all hover:bg-zinc-50 hover:text-zinc-700 active:scale-[0.98] dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-300"
+                className="w-full rounded-xl border border-yt-border py-3 text-sm font-medium text-yt-text-secondary transition-all hover:bg-yt-bg-alt hover:text-yt-text active:scale-[0.98]"
               >
                 Sign out
               </button>
@@ -154,7 +154,7 @@ export default async function PendingPage() {
           </div>
         </div>
 
-        <p className="mt-5 text-center text-xs text-zinc-400">Internal Team Tracker</p>
+        <p className="mt-5 text-center text-xs text-yt-text-secondary">Internal Team Tracker</p>
       </div>
     </div>
   )
