@@ -179,3 +179,25 @@ export async function deleteTask(taskId: string) {
   if (error) throw new Error(error.message)
   revalidatePath('/')
 }
+
+export type UserTask = {
+  id: string
+  description: string
+  department: Department
+  is_current: boolean
+  total_seconds: number
+  session_started_at: string | null
+  created_at: string
+  completed_at: string | null
+}
+
+export async function getUserTasks(userId: string): Promise<UserTask[]> {
+  const supabase = await createClient()
+  const { data } = await supabase
+    .from('tasks')
+    .select('id, description, department, is_current, total_seconds, session_started_at, created_at, completed_at')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(100)
+  return (data ?? []) as UserTask[]
+}

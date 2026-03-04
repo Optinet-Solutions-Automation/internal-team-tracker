@@ -492,7 +492,7 @@ export default function TaskPanel({
             <div className="rounded-2xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
               <div className="flex items-center gap-2 border-b border-zinc-100 px-4 py-2.5 dark:border-zinc-800">
                 <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
-                  {current ? 'Up next' : 'Task queue'}
+                  {current ? 'In Progress' : 'Task queue'}
                 </p>
                 {current && (
                   <span className="text-xs text-zinc-400">— double-click to switch</span>

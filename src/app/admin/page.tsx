@@ -277,7 +277,7 @@ export default async function AdminPage() {
                           <p className="truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
                             {profile!.full_name ?? 'No name'}
                           </p>
-                          <p className="truncate text-xs text-zinc-400">{shiftLabel[profile!.shift_status ?? 'off_shift']}</p>
+                          <p className="truncate text-xs text-zinc-400">{shiftLabel[(profile!.shift_status ?? 'off_shift') as ShiftStatus]}</p>
                         </div>
                       </div>
                       <div className="rounded-xl bg-zinc-50 px-3 py-2.5 dark:bg-zinc-800/60">
