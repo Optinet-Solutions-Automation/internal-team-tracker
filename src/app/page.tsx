@@ -7,6 +7,9 @@ import WelcomeHeader from '@/components/WelcomeHeader'
 import StatusDropdown from '@/components/StatusDropdown'
 import TaskPanel, { type Task, type CompletedTask } from '@/components/TaskPanel'
 import { PresenceProvider } from '@/components/PresenceContext'
+import { OnboardingProvider } from '@/components/OnboardingContext'
+import OnboardingTour from '@/components/OnboardingTour'
+import { ONBOARDING_STEPS } from '@/lib/onboarding-steps'
 import SignOutButton from '@/components/SignOutButton'
 import TeamSidebar from '@/components/TeamSidebar'
 import ThemeToggle from '@/components/ThemeToggle'
@@ -92,6 +95,7 @@ export default async function Home() {
 
   return (
     <PresenceProvider initialShiftStatus={myShiftStatus}>
+    <OnboardingProvider stepCount={ONBOARDING_STEPS.length}>
       <div className="min-h-screen bg-yt-bg">
 
         {/* ── Top Nav ── */}
@@ -110,7 +114,9 @@ export default async function Home() {
 
             <div className="flex items-center gap-2">
               <ThemeToggle />
-              <StatusDropdown />
+              <div data-tour="status-dropdown">
+                <StatusDropdown />
+              </div>
               {isAdmin && (
                 <Link
                   href="/admin"
@@ -133,20 +139,22 @@ export default async function Home() {
 
             {/* Left: dashboard content */}
             <div className="min-w-0 flex-1">
-              <WelcomeHeader
-                userId={user.id}
-                avatarUrl={myProfile.avatar_url}
-                name={myProfile.full_name}
-                email={myProfile.email}
-                role={myProfile.role}
-              />
+              <div data-tour="welcome-profile">
+                <WelcomeHeader
+                  userId={user.id}
+                  avatarUrl={myProfile.avatar_url}
+                  name={myProfile.full_name}
+                  email={myProfile.email}
+                  role={myProfile.role}
+                />
+              </div>
               <TaskPanel initialTasks={myTasks} initialCompleted={myCompleted} />
             </div>
 
             {/* Right: team sidebar
                 w-0 on mobile so it takes no layout space (mobile button is fixed, escapes parent)
                 w-64/w-72 on lg+ for the sticky inline sidebar */}
-            <div className="w-0 shrink-0 lg:w-64 xl:w-72">
+            <div className="w-0 shrink-0 lg:w-64 xl:w-72" data-tour="team-sidebar">
               <TeamSidebar
                 members={(teamMembers ?? []) as Profile[]}
                 currentTasks={(currentTasksRaw ?? []) as CurrentTask[]}
@@ -158,6 +166,8 @@ export default async function Home() {
 
 
       </div>
+      <OnboardingTour />
+    </OnboardingProvider>
     </PresenceProvider>
   )
 }

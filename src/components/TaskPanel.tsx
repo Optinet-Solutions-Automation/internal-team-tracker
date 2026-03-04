@@ -148,15 +148,16 @@ type MenuItem = {
   danger?: boolean
 }
 
-function DotsMenu({ menuId, openMenu, setOpenMenu, items }: {
+function DotsMenu({ menuId, openMenu, setOpenMenu, items, dataTour }: {
   menuId: string
   openMenu: string | null
   setOpenMenu: (id: string | null) => void
   items: MenuItem[]
+  dataTour?: string
 }) {
   const isOpen = openMenu === menuId
   return (
-    <div className="relative shrink-0">
+    <div className="relative shrink-0" {...(dataTour ? { 'data-tour': dataTour } : {})}>
       <button
         onClick={e => { e.stopPropagation(); setOpenMenu(isOpen ? null : menuId) }}
         className="flex h-8 w-8 items-center justify-center rounded-xl text-yt-text-secondary transition-colors hover:bg-yt-card hover:text-yt-text"
@@ -357,6 +358,7 @@ export default function TaskPanel({
           )}
         </div>
         <button
+          data-tour="add-task"
           onClick={() => { setShowAdd(v => !v); setNewDesc('') }}
           className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-semibold transition-all duration-200 active:scale-95
             ${showAdd
@@ -435,7 +437,7 @@ export default function TaskPanel({
 
           {/* Currently working on */}
           {current && (
-            <div className="rounded-2xl bg-yt-card ring-2 ring-yt-red/40">
+            <div data-tour="current-task" className="rounded-2xl bg-yt-card ring-2 ring-yt-red/40">
               {/* Active header */}
               <div className="flex items-center justify-between rounded-t-2xl bg-yt-red/10 px-4 py-2.5">
                 <div className="flex items-center gap-2">
@@ -475,6 +477,7 @@ export default function TaskPanel({
                       menuId={`current-${current.id}`}
                       openMenu={openMenu}
                       setOpenMenu={setOpenMenu}
+                      dataTour="task-actions"
                       items={[
                         { label: 'Edit', icon: EditIcon, onClick: () => setEditingId(current.id) },
                         { label: 'Mark as done', icon: CheckIcon, onClick: () => handleComplete(current.id) },
@@ -489,7 +492,7 @@ export default function TaskPanel({
 
           {/* Queue */}
           {queue.length > 0 && (
-            <div className="rounded-2xl bg-yt-card ring-1 ring-yt-border">
+            <div data-tour="task-queue" className="rounded-2xl bg-yt-card ring-1 ring-yt-border">
               <div className="flex items-center gap-2 border-b border-yt-border px-4 py-2.5">
                 <p className="text-xs font-semibold uppercase tracking-wider text-yt-text-secondary">
                   {current ? 'In Progress' : 'Task queue'}
@@ -556,7 +559,7 @@ export default function TaskPanel({
 
       {/* Completed tasks */}
       {completed.length > 0 && (
-        <div className="mt-4">
+        <div data-tour="completed-tasks" className="mt-4">
           <button
             onClick={() => setShowDone(v => !v)}
             className="flex items-center gap-2 rounded-lg px-1 py-1 text-xs font-semibold uppercase tracking-wider text-yt-text-secondary transition-colors hover:text-yt-text"

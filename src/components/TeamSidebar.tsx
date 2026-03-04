@@ -205,6 +205,7 @@ export default function TeamSidebar({
 
       {/* ── Mobile floating button ──────────────────────────── */}
       <button
+        data-tour="team-sidebar-mobile"
         onClick={() => setMobileOpen(true)}
         className="fixed bottom-4 right-4 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-yt-red text-white shadow-lg shadow-yt-red/30 transition-transform active:scale-95 lg:hidden"
       >
