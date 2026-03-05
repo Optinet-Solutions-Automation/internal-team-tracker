@@ -40,7 +40,7 @@ export const ONBOARDING_STEPS: TourStep[] = [
     selector: '[data-tour="task-queue"]',
     title: 'Your Task Queue',
     description:
-      'All your active tasks appear here. Double-click any task to switch to it and start the timer.',
+      'All your active tasks appear here. Tip: double-click any queued task to instantly switch to it — this moves your current task back to the queue and starts the timer on the new one.',
     placement: 'top',
   },
   {
