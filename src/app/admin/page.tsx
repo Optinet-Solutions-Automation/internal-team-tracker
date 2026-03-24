@@ -145,12 +145,23 @@ export default async function AdminPage() {
             <span className="text-yt-border">/</span>
             <span className="text-sm font-semibold text-yt-text">Admin Panel</span>
           </div>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/admin/reports"
+              className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm text-yt-text-secondary transition-colors hover:bg-yt-bg-alt hover:text-yt-text"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Reports
+            </Link>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-yt-red/10 px-3 py-1 text-xs font-semibold text-yt-red">
             <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
             </svg>
             Admin
           </span>
+          </div>
         </div>
       </nav>
 
