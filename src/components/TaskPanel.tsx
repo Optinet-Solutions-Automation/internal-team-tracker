@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useTransition } from 'react'
 import {
-  addTask, setCurrentTask, completeTask, updateTask, deleteTask, restoreTask,
+  addTask, addAndSwitchTask, setCurrentTask, completeTask, updateTask, deleteTask, restoreTask,
   type Department,
 } from '@/lib/actions/tasks'
 import ConfirmDialog from './ConfirmDialog'
@@ -237,6 +237,7 @@ export default function TaskPanel({
   const [isPending, startTransition] = useTransition()
   const [confirm, setConfirm] = useState<{ action: 'delete' | 'complete' | 'restore'; id: string } | null>(null)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
+  const [switchModal, setSwitchModal] = useState<{ desc: string; dept: Department } | null>(null)
 
   useEffect(() => { setTasks(initialTasks) },    [initialTasks])
   useEffect(() => { setCompleted(initialCompleted) }, [initialCompleted])
@@ -333,9 +334,34 @@ export default function TaskPanel({
   function handleAdd(e: React.FormEvent) {
     e.preventDefault()
     if (!newDesc.trim()) return
+    // If there's already an active task, ask the user if they want to switch
+    if (current) {
+      setSwitchModal({ desc: newDesc.trim(), dept: newDept })
+      return
+    }
     setNewDesc('')
     setShowAdd(false)
     startTransition(() => addTask(newDesc.trim(), newDept))
+  }
+
+  function confirmSwitchAdd() {
+    if (!switchModal) return
+    const { desc, dept } = switchModal
+    setSwitchModal(null)
+    setNewDesc('')
+    setShowAdd(false)
+    startTransition(async () => {
+      try { await addAndSwitchTask(desc, dept) } catch { setTasks(initialTasks) }
+    })
+  }
+
+  function confirmJustAdd() {
+    if (!switchModal) return
+    const { desc, dept } = switchModal
+    setSwitchModal(null)
+    setNewDesc('')
+    setShowAdd(false)
+    startTransition(() => addTask(desc, dept))
   }
 
   const current = tasks.find(t => t.is_current)
@@ -611,6 +637,51 @@ export default function TaskPanel({
       )}
 
     </section>
+
+    {switchModal && (
+      <div className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-24 pb-4">
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setSwitchModal(null)} />
+        <div className="relative w-full max-w-sm rounded-2xl bg-yt-card p-6 shadow-2xl ring-1 ring-yt-border">
+          <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-yt-red/10">
+            <svg className="h-5 w-5 text-yt-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+            </svg>
+          </div>
+          <h2 className="text-base font-semibold text-yt-text">Switch tasks?</h2>
+          <p className="mt-1.5 text-sm text-yt-text-secondary">
+            You&apos;re currently working on:
+          </p>
+          <div className="mt-2 flex items-center gap-2 rounded-xl bg-yt-bg-alt px-3 py-2.5">
+            <span className="h-2 w-2 shrink-0 rounded-full bg-yt-red" />
+            <p className="min-w-0 flex-1 truncate text-sm font-medium text-yt-text">{current?.description}</p>
+            {current && <DeptBadge d={current.department} />}
+          </div>
+          <p className="mt-3 text-sm text-yt-text-secondary">
+            Switch to <span className="font-medium text-yt-text">&ldquo;{switchModal.desc}&rdquo;</span>?
+          </p>
+          <div className="mt-5 flex flex-col gap-2">
+            <button
+              onClick={confirmSwitchAdd}
+              className="w-full rounded-xl bg-yt-red py-2.5 text-sm font-semibold text-white transition-colors hover:bg-yt-red-hover active:scale-95"
+            >
+              Switch to new task
+            </button>
+            <button
+              onClick={confirmJustAdd}
+              className="w-full rounded-xl border border-yt-border py-2.5 text-sm font-medium text-yt-text transition-colors hover:bg-yt-bg-alt"
+            >
+              Just add to queue
+            </button>
+            <button
+              onClick={() => setSwitchModal(null)}
+              className="w-full rounded-xl py-2.5 text-sm text-yt-text-secondary transition-colors hover:bg-yt-bg-alt"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
 
     {confirm && (
       <ConfirmDialog

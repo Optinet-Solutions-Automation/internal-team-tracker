@@ -5,6 +5,12 @@ import { createClient } from '@/lib/supabase/server'
 
 export type Department = 'automation' | 'webdev'
 
+/** Returns today's date string in PHT (UTC+8) as YYYY-MM-DD */
+function getPHTDateStr(): string {
+  const pht = new Date(Date.now() + 8 * 60 * 60 * 1000)
+  return pht.toISOString().slice(0, 10)
+}
+
 export async function addTask(description: string, department: Department) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -15,6 +21,64 @@ export async function addTask(description: string, department: Department) {
     .insert({ user_id: user.id, description: description.trim(), department })
 
   if (error) throw new Error(error.message)
+  revalidatePath('/')
+}
+
+/**
+ * Creates a new task and immediately sets it as the current task,
+ * stopping any previously running task. Used by the "switch task" modal.
+ */
+export async function addAndSwitchTask(description: string, department: Department) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Not authenticated')
+
+  const now = new Date()
+
+  // Stop the current task's timer if one is running
+  const { data: active } = await supabase
+    .from('tasks')
+    .select('id, total_seconds, session_started_at')
+    .eq('user_id', user.id)
+    .eq('is_current', true)
+    .is('completed_at', null)
+    .maybeSingle()
+
+  if (active) {
+    const elapsed = active.session_started_at
+      ? Math.floor((now.getTime() - new Date(active.session_started_at).getTime()) / 1000)
+      : 0
+    await supabase.from('tasks').update({
+      is_current: false,
+      session_started_at: null,
+      total_seconds: active.total_seconds + elapsed,
+    }).eq('id', active.id)
+  }
+
+  // Create and immediately activate the new task
+  const { data: newTask, error } = await supabase
+    .from('tasks')
+    .insert({
+      user_id: user.id,
+      description: description.trim(),
+      department,
+      is_current: true,
+      session_started_at: now.toISOString(),
+    })
+    .select('id')
+    .single()
+
+  if (error) throw new Error(error.message)
+
+  // Log to daily_logs for today's PHT date
+  await supabase.from('daily_logs').upsert({
+    user_id: user.id,
+    task_id: newTask.id,
+    description: description.trim(),
+    department,
+    log_date: getPHTDateStr(),
+  }, { onConflict: 'user_id,task_id,log_date' })
+
   revalidatePath('/')
 }
 
@@ -61,6 +125,24 @@ export async function setCurrentTask(taskId: string) {
     .eq('user_id', user.id)
 
   if (error) throw new Error(error.message)
+
+  // Log to daily_logs — fetch task details for the record
+  const { data: taskData } = await supabase
+    .from('tasks')
+    .select('description, department')
+    .eq('id', taskId)
+    .single()
+
+  if (taskData) {
+    await supabase.from('daily_logs').upsert({
+      user_id: user.id,
+      task_id: taskId,
+      description: taskData.description,
+      department: taskData.department,
+      log_date: getPHTDateStr(),
+    }, { onConflict: 'user_id,task_id,log_date' })
+  }
+
   revalidatePath('/')
 }
 

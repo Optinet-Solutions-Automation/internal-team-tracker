@@ -78,4 +78,12 @@ export const ONBOARDING_STEPS: TourStep[] = [
       'Your finished tasks are stored here. Expand to review them, and restore any task if needed.',
     placement: 'top',
   },
+  {
+    id: 'daily-report',
+    selector: '[data-tour="current-task"]',
+    title: 'Daily Activity Tracking',
+    description:
+      'Whatever task you set as active gets logged to your daily report automatically. If a task spans multiple days it will appear in each day\'s report. Admins can view these reports anytime under Admin Panel → Reports.',
+    placement: 'top',
+  },
 ]
